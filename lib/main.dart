@@ -70,7 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: Theme.of(context).primaryColorDark,
                 text: '+/-',
                 onTap: () {
-                  // TODO
+                  if (!screenText.contains('-')) {
+                    screenText = '-';
+                  }
                 },
               ),
               CalculatorButton(
@@ -78,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: Theme.of(context).primaryColorDark,
                 text: '%',
                 onTap: () {
-                  // TODO
+                  pressOperation('%');
                 },
               ),
               CalculatorButton.icon(
@@ -128,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: Theme.of(context).primaryColorLight,
                 text: '/',
                 onTap: () {
-                  // TODO
+                  pressOperation('/');
                 },
               ),
               CalculatorButton(
@@ -158,9 +160,9 @@ class _MyHomePageState extends State<MyHomePage> {
               CalculatorButton(
                 backgroundColor: Theme.of(context).primaryColorDark,
                 foregroundColor: Theme.of(context).primaryColorLight,
-                text: 'x',
+                text: '×',
                 onTap: () {
-                  // TODO
+                  pressOperation('×');
                 },
               ),
               CalculatorButton(
@@ -192,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: Theme.of(context).primaryColorLight,
                 text: '-',
                 onTap: () {
-                  // TODO
+                  pressOperation('-');
                 },
               ),
               CalculatorButton(
@@ -220,7 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: Theme.of(context).primaryColorDark,
                 text: '=',
                 onTap: () {
-                  // TODO
+                  pressOperation('=');
                 },
               ),
               CalculatorButton(
@@ -228,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 foregroundColor: Theme.of(context).primaryColorLight,
                 text: '+',
                 onTap: () {
-                  // TODO
+                  pressOperation('+');
                 },
               ),
             ],
@@ -244,6 +246,14 @@ class _MyHomePageState extends State<MyHomePage> {
         screenText = '$number';
       } else {
         screenText = '$screenText$number';
+      }
+    });
+  }
+
+  void pressOperation(String operation) {
+    setState(() {
+      if (screenText != '0') {
+        screenText = '$screenText$operation';
       }
     });
   }
